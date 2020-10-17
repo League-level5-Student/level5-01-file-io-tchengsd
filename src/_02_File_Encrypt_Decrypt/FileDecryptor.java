@@ -1,6 +1,15 @@
 package _02_File_Encrypt_Decrypt;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 public class FileDecryptor {
+	char[] afterShift = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	char[] beforeShift = {'H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B','C','D','E','F','G','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g'};
 	/*
 	 * Decryption is the process of taking encoded or encrypted text or other data
 	 * and converting it back into text that you or the computer can read and understand.
@@ -19,4 +28,32 @@ public class FileDecryptor {
 	 * Create a program that opens the file created by FileEncryptor and decrypts
 	 * the message, then display it to the user in a JOptionPane.
 	 */
+	public static void main(String[] args) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/_02_File_Encrypt_Decrypt/message.txt"));
+			String encrypted = br.readLine();
+			br.close();
+			char[] chars = new FileDecryptor().decrypt(encrypted);
+			String message = new String(chars);
+			JOptionPane.showMessageDialog(null, message);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	char[] decrypt(String input) {
+		char[] chars = input.toCharArray();
+		for(int i = 0; i < chars.length; i++) {
+			for(int j = 0; j < beforeShift.length; j++) {
+				if(chars[i] == beforeShift[j]) {
+					chars[i] = afterShift[j];
+					break;
+				}
+			}
+		}
+		return chars;
+	}
 }
