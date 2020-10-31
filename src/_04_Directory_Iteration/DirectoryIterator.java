@@ -29,5 +29,19 @@ public class DirectoryIterator {
 		 * Be aware of possible directories inside of directories.
 		 * (e.g //Copyright © 2019 FirstName LastName)
 		 */
+		File[] files = new File("src/").listFiles();
+		for(File file : files) {
+			if(file.isDirectory()) {
+				File[] inDir = new File(file.getAbsolutePath()).listFiles();
+				for(File dirFile : inDir) {
+					if(dirFile.getName().contains(".java")) {
+						
+					}
+				}
+			}
+			else if(file.getName().contains(".java")) {
+				
+			}
+		}
 	}
 }
