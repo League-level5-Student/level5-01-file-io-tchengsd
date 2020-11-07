@@ -61,3 +61,4 @@ public class Serialization {
 		}
 	}
 }
+//Copyright © 2020 Tyler Cheng

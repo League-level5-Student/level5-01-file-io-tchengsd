@@ -14,3 +14,4 @@ public class SaveData implements Serializable{
 		this.age = age;
 	}
 }
+//Copyright © 2020 Tyler Cheng

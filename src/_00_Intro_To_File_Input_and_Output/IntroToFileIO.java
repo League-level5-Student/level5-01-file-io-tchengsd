@@ -70,3 +70,4 @@ public class IntroToFileIO {
 		}
 	}
 }
+//Copyright © 2020 Tyler Cheng

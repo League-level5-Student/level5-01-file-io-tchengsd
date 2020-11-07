@@ -52,3 +52,4 @@ public class FileEncryptor {
 		return chars;
 	}
 }
+//Copyright © 2020 Tyler Cheng

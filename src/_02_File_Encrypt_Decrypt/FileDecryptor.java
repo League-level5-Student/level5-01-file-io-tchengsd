@@ -57,3 +57,4 @@ public class FileDecryptor {
 		return chars;
 	}
 }
+//Copyright © 2020 Tyler Cheng
