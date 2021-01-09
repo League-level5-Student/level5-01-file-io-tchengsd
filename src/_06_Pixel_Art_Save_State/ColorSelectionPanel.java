@@ -27,15 +27,12 @@ import _05_Serialization.SaveData;
 
 public class ColorSelectionPanel extends JPanel implements MouseListener, ChangeListener, ActionListener{
 	private static final long serialVersionUID = 1L;
-	private static final String DATA_FILE = "src/_06_Pixel_Art_Save_State/saved.dat";
 	
 	public static final int MAX_COLOR = 256;
 	
 	private JSlider rSlider;
 	private JSlider gSlider;
 	private JSlider bSlider;
-	private JButton save;
-	private JButton load;
 	
 	private Color color;
 	
@@ -50,8 +47,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		rSlider = new JSlider(JSlider.VERTICAL);
 		gSlider = new JSlider(JSlider.VERTICAL);
 		bSlider = new JSlider(JSlider.VERTICAL);
-		save = new JButton("Save panel");
-		load = new JButton("Load panel");
 		
 		rSlider.setMinimum(0);
 		rSlider.setMaximum(MAX_COLOR - 1);
@@ -87,10 +82,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		add(gSlider);
 		add(new JLabel("blue"));
 		add(bSlider);
-		add(save);
-		save.addActionListener(this);
-		add(load);
-		load.addActionListener(this);
 	}
 
 	public Color getSelectedColor() {
@@ -144,28 +135,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		
 		colorLabel.setIcon(new ImageIcon(colorImage));
 		add(colorLabel);
-	}
-	
-	private static void save(GridPanel toSave) {
-		try (FileOutputStream fos = new FileOutputStream(new File(DATA_FILE)); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-			oos.writeObject(toSave);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static GridPanel load() {
-		try (FileInputStream fis = new FileInputStream(new File(DATA_FILE)); ObjectInputStream ois = new ObjectInputStream(fis)) {
-			return (GridPanel) ois.readObject();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} catch (ClassNotFoundException e) {
-			// This can occur if the object we read from the file is not
-			// an instance of any recognized class
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	@Override
